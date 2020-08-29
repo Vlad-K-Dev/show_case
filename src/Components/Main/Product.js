@@ -1,27 +1,46 @@
-import React from "react";
+import React,{useState} from "react";
 import PropTypes from 'prop-types';
 import ProductPreview from "./Product_preview";
 
+const style = {
+    ul: {
+        display:'flex',
+        flexFlow: 'row wrap',
+        justifyContent: 'center'
+    }
+
+}
 function Products(props) {
-    console.log( props.data)
+    const [value, setState] = useState();
+
+    console.log(value)
+    function filterData (item){
+        // genre
+        // grade
+        return item.subject === 'Алгебра'
+    }
+    let filtration = props.courses.filter(filterData)
+    // console.log(filtration)
+
+
+
+
     return (
-
-        <ul className="products" >
-            {/*{    props.data.map((item,index) =>{*/}
-            {/*        return <ProductPreview*/}
-            {/*            item={item}*/}
-            {/*            key={item.id}*/}
-            {/*            index={index}*/}
-            {/*        />*/}
-            {/*    })*/}
-            {/*}*/}
-
+        <ul className="products" style={style.ul}>
+            {   props.courses.map((item,index) =>{
+                    return <ProductPreview
+                        item={item}
+                        key={item.courseId}
+                        index={index}
+                    />
+                })
+            }
         </ul>
     )
 }
 
 Products.propTypes = {
-    data: PropTypes.arrayOf(PropTypes.object).isRequired
+    courses: PropTypes.arrayOf(PropTypes.object).isRequired
 }
 
 export default Products;

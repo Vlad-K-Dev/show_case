@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+
 import './App.sass';
 import Header from './Components/Header/Header';
 import Product from "./Components/Main/Product";
@@ -21,15 +22,17 @@ function App() {
 
         })
             .then(response => response.json())
-            .then(data => {
-                setPreview(data)
+            .then(courses => {
+                setPreview(courses.items)
             })
     }, [])
 
+    console.log(useState())
     return (
+
         <div className="wrapper">
             <Header />
-            <Product data={courses.items}/>
+            <Product courses={courses}/>
         </div>
     )
 }
